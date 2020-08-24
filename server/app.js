@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const socket_io = require("socket.io");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 const { translateMsg } = require("./translate");
@@ -17,6 +18,16 @@ const io = socket_io({
   pingInterval: 5000,
 });
 app.io = io;
+
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("DB connection success!"))
+  .catch((e) => console.log(e));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
