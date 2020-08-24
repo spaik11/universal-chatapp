@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 const { translateMsg } = require("./translate");
+require("dotenv").config();
 
 const app = express();
 
