@@ -10,7 +10,6 @@ const indexRouter = require("./routes/index");
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 const { translateMsg } = require("./translate");
 require("dotenv").config();
-
 const app = express();
 
 const io = socket_io({
@@ -18,6 +17,7 @@ const io = socket_io({
   pingTimeout: 120000,
   pingInterval: 5000,
 });
+
 app.io = io;
 
 mongoose
